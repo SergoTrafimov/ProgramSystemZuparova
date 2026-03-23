@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Редактирование проекта{% endblock %}
+{% block content %}
+<h2>Редактирование: {{ project.name }}</h2>
+<form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label>Название</label>
+        <input type="text" name="name" value="{{ project.name }}" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label>Описание</label>
+        <textarea name="description" class="form-control" rows="3">{{ project.description }}</textarea>
+    </div>
+    <div class="mb-3">
+        <label>Куратор</label>
+        <select name="curator" class="form-select">
+            <option value="">Не назначен</option>
+            {% for curator in curators %}
+            <option value="{{ curator.id }}" {% if project.curator.id == curator.id %}selected{% endif %}>{{ curator.username }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+    <a href="{% url 'admin_project_list' %}" class="btn btn-secondary">Назад</a>
+</form>
+{% endblock %}

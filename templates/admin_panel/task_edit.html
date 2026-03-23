@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}Редактирование задачи{% endblock %}
+{% block content %}
+<h2>Редактирование задачи: {{ task.title }}</h2>
+<form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label>Название</label>
+        <input type="text" name="title" value="{{ task.title }}" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label>Описание</label>
+        <textarea name="description" class="form-control" rows="3">{{ task.description }}</textarea>
+    </div>
+    <div class="mb-3">
+        <label>ТЗ</label>
+        <textarea name="technical_spec" class="form-control" rows="3">{{ task.technical_spec }}</textarea>
+    </div>
+    <div class="mb-3">
+        <label>Статус</label>
+        <select name="status" class="form-select">
+            {% for value, label in task.STATUS_CHOICES %}
+            <option value="{{ value }}" {% if task.status == value %}selected{% endif %}>{{ label }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label>Исполнитель</label>
+        <select name="assigned_to" class="form-select">
+            <option value="">Не назначен</option>
+            {% for dev in developers %}
+            <option value="{{ dev.id }}" {% if task.assigned_to.id == dev.id %}selected{% endif %}>{{ dev.username }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label>Дедлайн</label>
+        <input type="datetime-local" name="deadline" value="{% if task.deadline %}{{ task.deadline|date:'Y-m-d\TH:i' }}{% endif %}" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+    <a href="{% url 'admin_task_list' %}" class="btn btn-secondary">Назад</a>
+</form>
+{% endblock %}

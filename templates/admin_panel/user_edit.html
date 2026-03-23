@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Редактирование пользователя{% endblock %}
+{% block content %}
+<h2>Редактирование: {{ user.username }}</h2>
+<form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label>Имя</label>
+        <input type="text" name="first_name" value="{{ user.first_name }}" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label>Фамилия</label>
+        <input type="text" name="last_name" value="{{ user.last_name }}" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label>Email</label>
+        <input type="email" name="email" value="{{ user.email }}" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label>Роль</label>
+        <select name="role" class="form-select">
+            {% for value, label in user.profile.ROLE_CHOICES %}
+            <option value="{{ value }}" {% if user.profile.role == value %}selected{% endif %}>{{ label }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+    <a href="{% url 'admin_user_list' %}" class="btn btn-secondary">Отмена</a>
+</form>
+{% endblock %}

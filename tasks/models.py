@@ -1,39 +1,40 @@
 from django.db import models
-from accounts.models import User
+from django.contrib.auth.models import User
 from projects.models import Project
 
-class TaskStatus(models.TextChoices):
-    NEW = 'new', 'Новая'
-    IN_PROGRESS = 'in_progress', 'В работе'
-    TESTING = 'testing', 'На тестировании'
-    REWORK = 'rework', 'На доработке'
-    DONE = 'done', 'Выполнена'
-
 class Task(models.Model):
-    title = models.CharField(max_length=255)
-    description = models.TextField()
-    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='tasks')
-    created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='created_tasks')
-    assigned_to = models.ForeignKey(
-        User, on_delete=models.SET_NULL, null=True, blank=True,
-        related_name='assigned_tasks'
+    STATUS_CHOICES = (
+        ('new', 'Новая'),
+        ('accepted', 'Принята в работу'),
+        ('delayed', 'Отложена'),
+        ('done', 'Выполнена'),
+        ('testing', 'На тестировании'),
+        ('rework', 'На доработке'),
+        ('completed', 'Готова к передаче заказчику'),
     )
-    status = models.CharField(max_length=20, choices=TaskStatus.choices, default=TaskStatus.NEW)
-    deadline = models.DateTimeField()
-    priority = models.PositiveSmallIntegerField(default=1)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='tasks')
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    technical_spec = models.TextField(blank=True)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='new')
+    assigned_to = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='assigned_tasks')
+    deadline = models.DateTimeField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    parent_task = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True)
+    created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='created_tasks')
+    tester_comment = models.TextField(blank=True)
 
     def __str__(self):
-        return self.title
+        return f"{self.title} ({self.get_status_display()})"
 
-class Comment(models.Model):
-    task = models.ForeignKey(Task, on_delete=models.CASCADE, related_name='comments')
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
-    content = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
-    is_public = models.BooleanField(default=False)
+class TaskAssignmentHistory(models.Model):
+    task = models.ForeignKey(Task, on_delete=models.CASCADE)
+    assigned_to = models.ForeignKey(User, on_delete=models.CASCADE)
+    assigned_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='assignments_made')
+    assigned_at = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self):
-        return f"Comment by {self.author} on {self.task}"
+class WorkLog(models.Model):
+    task = models.ForeignKey(Task, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    hours = models.DecimalField(max_digits=5, decimal_places=2)
+    date = models.DateField(auto_now_add=True)

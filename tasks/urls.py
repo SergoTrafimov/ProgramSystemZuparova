@@ -1,11 +1,9 @@
-from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
+from . import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('accounts/', include('accounts.urls')),  # для логина/логаута
-    path('projects/', include('projects.urls')),
-    path('tasks/', include('tasks.urls')),
-    path('payroll/', include('payroll.urls')),
-
+    path('developer/', views.developer_dashboard, name='developer_dashboard'),
+    path('developer/update/<int:task_id>/<str:status>/', views.update_task_status, name='update_task_status'),
+    path('tester/', views.tester_dashboard, name='tester_dashboard'),
+    path('tester/test/<int:task_id>/', views.test_task, name='test_task'),
 ]
