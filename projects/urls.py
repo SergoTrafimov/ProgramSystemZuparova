@@ -1,11 +1,9 @@
-from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
+from . import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('accounts/', include('accounts.urls')),  # для логина/логаута
-    path('projects/', include('projects.urls')),
-    path('tasks/', include('tasks.urls')),
-    path('payroll/', include('payroll.urls')),
-
+    path('', views.ProjectListView.as_view(), name='project_list'),
+    path('<int:pk>/', views.ProjectDetailView.as_view(), name='project_detail'),
+    path('create/', views.ProjectCreateView.as_view(), name='project_create'),
+    path('<int:pk>/update/', views.ProjectUpdateView.as_view(), name='project_update'),
 ]

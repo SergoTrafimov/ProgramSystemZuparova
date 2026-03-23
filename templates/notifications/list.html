@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Мои уведомления</h2>
+<ul class="list-group">
+    {% for n in notifications %}
+    <li class="list-group-item {% if not n.is_read %}list-group-item-info{% endif %}">
+        {{ n.message }}
+        <small class="text-muted">{{ n.created_at }}</small>
+        {% if not n.is_read %}
+        <a href="{% url 'mark_read' n.pk %}" class="btn btn-sm btn-secondary float-right">Прочитано</a>
+        {% endif %}
+    </li>
+    {% empty %}
+    <li class="list-group-item">Нет уведомлений.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

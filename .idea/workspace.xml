@@ -5,27 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="15bb9a80-bc43-435f-851f-61e465155d8d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/pythonProject.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/accounts/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/clients/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/notifications/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/payroll/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/projects/signals.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/projects/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tasks/signals.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tasks/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clients/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/clients/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kosti/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/kosti/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kosti/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/kosti/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notifications/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/notifications/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notifications/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/notifications/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notifications/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/notifications/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notifications/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/notifications/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projects/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/projects/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
