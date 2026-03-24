@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block title %}Расчёт зарплаты{% endblock %}
+{% block content %}
+
+<h2><i class="fas fa-calculator"></i> Расчёт зарплаты за {{ current_period|date:"F Y" }}</h2>
+<form method="post">
+    {% csrf_token %}
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Сотрудник</th>
+                    <th>Роль</th>
+                    <th>Базовая ставка (руб.)</th>
+                    <th>Бонус (руб.)</th>
+                    <th>Налоги (руб.)</th>
+                    <th>Итого к выплате</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for profile in profiles %}
+                <tr>
+                    <td>{{ profile.user.get_full_name|default:profile.user.username }}</td>
+                    <td>{{ profile.get_role_display }}</td>
+                    <td>
+                        <!-- {{ profile.salary_base }} -->
+                        <input type="text" name="salary_base_{{ profile.id }}"
+       value="{{ profile.salary_base|floatformat:2|default:'0' }}"
+       class="form-control form-control-sm">
+                    </td>
+                    <td>
+                        <input type="text" step="0.1" name="bonus_{{ profile.id }}"
+                               value="{% if profile.payment %}{{ profile.payment.bonuses }}{% else %}0{% endif %}"
+                               class="form-control form-control-sm">
+                    </td>
+                    <td>
+                        {% if profile.payment %}
+                            {{ profile.payment.deductions }}
+                        {% else %}
+                            0
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if profile.payment %}
+                            {{ profile.payment.net_salary }}
+                        {% else %}
+                            -
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <button type="submit" class="btn btn-primary">Рассчитать и сохранить</button>
+</form>
+
+
+{% endblock %}

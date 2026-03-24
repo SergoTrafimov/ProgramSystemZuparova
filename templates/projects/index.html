@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Главная{% endblock %}
+{% block content %}
+<div class="text-center py-5">
+    <h1 class="display-4">Добро пожаловать в ProjectManager!</h1>
+    <p class="lead">Система управления проектами и задачами</p>
+    {% if not user.is_authenticated %}
+        <a href="{% url 'login' %}" class="btn btn-primary btn-lg">Войти</a>
+        <a href="{% url 'register' %}" class="btn btn-outline-primary btn-lg">Регистрация</a>
+    {% endif %}
+</div>
+{% endblock %}

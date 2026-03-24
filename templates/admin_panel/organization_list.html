@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Организации{% endblock %}
+{% block content %}
+<h2>Организации</h2>
+<a href="{% url 'admin_organization_create' %}" class="btn btn-primary mb-3">Создать организацию</a>
+<a href="{% url 'admin_dashboard' %}" class="btn btn-secondary mb-3">Назад</a>
+<table class="table">
+    <thead>
+        <tr><th>Название</th><th>Описание</th><th>Действия</th></tr>
+    </thead>
+    <tbody>
+        {% for org in orgs %}
+        <tr>
+            <td>{{ org.name }}</td>
+            <td>{{ org.description }}</td>
+            <td>
+                <a href="{% url 'admin_organization_edit' org.pk %}" class="btn btn-sm btn-warning">Редактировать</a>
+                <a href="{% url 'admin_organization_delete' org.pk %}" class="btn btn-sm btn-danger">Удалить</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="3">Нет организаций. Создайте первую.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Ответ на обращение{% endblock %}
+{% block content %}
+<h2>Ответ на обращение: {{ message.subject }}</h2>
+<p><strong>Отправитель:</strong> {{ message.created_by.get_full_name|default:message.created_by.username }}</p>
+<p><strong>Сообщение:</strong> {{ message.message }}</p>
+<form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="response" class="form-label">Ваш ответ</label>
+        <textarea name="response" id="response" rows="5" class="form-control" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Отправить ответ</button>
+    <a href="{% url 'analyst_messages' %}" class="btn btn-secondary">Назад</a>
+</form>
+{% endblock %}

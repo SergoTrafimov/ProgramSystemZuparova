@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %}Мои задачи{% endblock %}
+{% block content %}
+<h2><i class="fas fa-code"></i> Мои задачи</h2>
+<div class="row">
+    {% for task in tasks %}
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <span>{{ task.project.name }}</span>
+                <span class="status-badge status-{{ task.status }}">{{ task.get_status_display }}</span>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{ task.title }}</h5>
+                <p class="card-text">{{ task.description|truncatechars:150 }}</p>
+                <form method="post" action="{% url 'update_task_repo' task.id %}">
+                    {% csrf_token %}
+                     <div class="input-group mb-2">
+                        <input type="url" name="repository_url" value="{{ task.repository_url|default:'' }}"
+                                 class="form-control form-control-sm" placeholder="Ссылка на репозиторий">
+                         <button type="submit" class="btn btn-sm btn-outline-secondary">Сохранить</button>
+                     </div>
+                </form>
+                <p><strong>Дедлайн:</strong>
+                    {% if task.deadline %}
+                        <span class="{% if task.deadline < now %}deadline-warning{% elif task.deadline < now|add:86400 %}deadline-soon{% endif %}">
+                            {{ task.deadline|date:"d.m.Y H:i" }}
+                        </span>
+                    {% else %}Не установлен{% endif %}
+                </p>
+                <div class="btn-group" role="group">
+    {% if task.status == 'new' %}
+        <a href="{% url 'update_task_status' task.id 'accepted' %}" class="btn btn-success btn-sm"><i class="fas fa-check"></i> Принять</a>
+        <a href="{% url 'update_task_status' task.id 'delayed' %}" class="btn btn-warning btn-sm"><i class="fas fa-clock"></i> Отложить</a>
+    {% elif task.status == 'accepted' %}
+        <a href="{% url 'update_task_status' task.id 'done' %}" class="btn btn-primary btn-sm"><i class="fas fa-check-double"></i> Выполнено</a>
+        <a href="{% url 'update_task_status' task.id 'delayed' %}" class="btn btn-warning btn-sm"><i class="fas fa-clock"></i> Отложить</a>
+    {% elif task.status == 'delayed' %}
+        <a href="{% url 'update_task_status' task.id 'accepted' %}" class="btn btn-success btn-sm"><i class="fas fa-undo"></i> Принять в работу</a>
+        <a href="{% url 'update_task_status' task.id 'done' %}" class="btn btn-primary btn-sm"><i class="fas fa-check-double"></i> Выполнено</a>
+    {% elif task.status == 'rework' %}
+        <a href="{% url 'update_task_status' task.id 'accepted' %}" class="btn btn-warning btn-sm"><i class="fas fa-undo"></i> Принять в работу</a>
+        <a href="{% url 'update_task_status' task.id 'delayed' %}" class="btn btn-secondary btn-sm"><i class="fas fa-clock"></i> Отложить</a>
+    {% endif %}
+</div>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-12"><div class="alert alert-info">У вас нет активных задач.</div></div>
+    {% endfor %}
+</div>
+{% endblock %}

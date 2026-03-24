@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}Мои обращения{% endblock %}
+{% block content %}
+<h2>Мои обращения</h2>
+<a href="{% url 'create_client_message' %}" class="btn btn-primary mb-3">Новое обращение</a>
+<table class="table">
+    <thead>
+        <tr><th>Тема</th><th>Дата</th><th>Статус</th><th>Ответ</th></tr>
+    </thead>
+    <tbody>
+    {% for msg in messages %}
+    <tr>
+        <td>{{ msg.subject }}</td>
+        <td>{{ msg.created_at|date:"d.m.Y H:i" }}</td>
+        <td>{{ msg.get_status_display }}</td>
+        <td>{{ msg.response|default:"—" }}</td>
+        <td>
+            {% if msg.project %}
+                <a href="{% url 'project_dialog' msg.project.id %}" class="btn btn-sm btn-info">Перейти в проект</a>
+            {% else %}
+                <a href="{% url 'view_client_message' msg.id %}" class="btn btn-sm btn-primary">Просмотреть</a>
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</tbody>
+</table>
+{% endblock %}

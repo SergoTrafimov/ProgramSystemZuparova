@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Обратная связь{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">Новое сообщение для проекта {{ project.name }}</h4>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <button type="submit" class="btn btn-primary">Отправить</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5>История сообщений</h5>
+            </div>
+            <div class="card-body" style="max-height: 400px; overflow-y: auto;">
+                {% for fb in feedbacks %}
+                <div class="mb-3 {% if fb.from_client %}text-start{% else %}text-end{% endif %}">
+                    <div class="d-inline-block p-2 rounded {% if fb.from_client %}bg-light{% else %}bg-primary text-white{% endif %}">
+                        <strong>{% if fb.from_client %}Клиент{% else %}Система{% endif %}:</strong>
+                        {{ fb.message }}
+                        <br><small class="text-muted">{{ fb.created_at|date:"d.m.Y H:i" }}</small>
+                    </div>
+                </div>
+                {% empty %}
+                <p class="text-muted">Нет сообщений.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
