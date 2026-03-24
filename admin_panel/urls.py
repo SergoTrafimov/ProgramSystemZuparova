@@ -10,4 +10,8 @@ urlpatterns = [
     path('projects/<str:project_id>/delete/', views.project_delete, name='admin_project_delete'),
     path('tasks/', views.task_list, name='admin_task_list'),
     path('tasks/<int:task_id>/edit/', views.task_edit, name='admin_task_edit'),
+    path('organizations/', views.organization_list, name='admin_organization_list'),
+    path('organizations/create/', views.organization_create, name='admin_organization_create'),
+    path('organizations/<int:pk>/edit/', views.organization_edit, name='admin_organization_edit'),
+    path('organizations/<int:pk>/delete/', views.organization_delete, name='admin_organization_delete'),
 ]

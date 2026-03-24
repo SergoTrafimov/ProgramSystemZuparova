@@ -12,8 +12,13 @@ def is_accountant(user):
 @login_required
 @user_passes_test(is_accountant)
 def accountant_dashboard(request):
+    if request.user.profile.role == 'admin':
+        profiles = Profile.objects.select_related('user').all()
+    else:
+        profiles = Profile.objects.select_related('user').filter(
+                organization=request.user.profile.organization
+            )
     # Получаем все профили, подгружая связанного пользователя
-    profiles = Profile.objects.select_related('user').all()
     today = date.today()
     current_period = date(today.year, today.month, 1)
 

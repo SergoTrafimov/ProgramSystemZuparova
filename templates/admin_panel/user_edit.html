@@ -24,6 +24,15 @@
             {% endfor %}
         </select>
     </div>
+    <div class="mb-3">
+        <label>Организация</label>
+        <select name="organization" class="form-select">
+            <option value="">— Без организации —</option>
+            {% for org in organizations %}
+            <option value="{{ org.id }}" {% if user.profile.organization.id == org.id %}selected{% endif %}>{{ org.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
     <button type="submit" class="btn btn-primary">Сохранить</button>
     <a href="{% url 'admin_user_list' %}" class="btn btn-secondary">Отмена</a>
 </form>

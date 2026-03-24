@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}Расчёт зарплаты{% endblock %}
 {% block content %}
+
 <h2><i class="fas fa-calculator"></i> Расчёт зарплаты за {{ current_period|date:"F Y" }}</h2>
 <form method="post">
     {% csrf_token %}
@@ -23,12 +24,12 @@
                     <td>{{ profile.get_role_display }}</td>
                     <td>
                         <!-- {{ profile.salary_base }} -->
-                        <input type="number" step="100" name="salary_base_{{ profile.id }}"
-                               value="{{ profile.salary_base|floatformat:2|default:'0' }}"
-                               class="form-control form-control-sm">
+                        <input type="text" name="salary_base_{{ profile.id }}"
+       value="{{ profile.salary_base|floatformat:2|default:'0' }}"
+       class="form-control form-control-sm">
                     </td>
                     <td>
-                        <input type="number" step="100" name="bonus_{{ profile.id }}"
+                        <input type="text" step="0.1" name="bonus_{{ profile.id }}"
                                value="{% if profile.payment %}{{ profile.payment.bonuses }}{% else %}0{% endif %}"
                                class="form-control form-control-sm">
                     </td>

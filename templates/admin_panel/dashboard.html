@@ -3,7 +3,7 @@
 {% block content %}
 <h1>Административная панель</h1>
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-3">
         <div class="card text-center">
             <div class="card-body">
                 <h5 class="card-title">Пользователи</h5>
@@ -12,7 +12,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
         <div class="card text-center">
             <div class="card-body">
                 <h5 class="card-title">Проекты</h5>
@@ -21,12 +21,22 @@
             </div>
         </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
         <div class="card text-center">
             <div class="card-body">
                 <h5 class="card-title">Задачи</h5>
                 <p class="display-4">{{ tasks_count }}</p>
                 <a href="{% url 'admin_task_list' %}" class="btn btn-primary">Управление</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <!-- Новая карточка Организации -->
+        <div class="card text-center">
+            <div class="card-body">
+                <h5 class="card-title">Организации</h5>
+                <p class="display-4">{{ orgs_count }}</p>
+                <a href="{% url 'admin_organization_list' %}" class="btn btn-primary">Управление</a>
             </div>
         </div>
     </div>

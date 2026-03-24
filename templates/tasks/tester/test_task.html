@@ -9,6 +9,9 @@
             </div>
             <div class="card-body">
                 <p><strong>Описание:</strong> {{ task.description }}</p>
+                {% if task.repository_url %}
+                <p><strong>Ссылка на репозиторий:</strong> <a href="{{ task.repository_url }}" target="_blank">{{ task.repository_url }}</a></p>
+                {% endif %}
                 <p><strong>ТЗ:</strong> {{ task.technical_spec|default:"Не указано" }}</p>
                 <p><strong>Разработчик:</strong> {{ task.assigned_to }}</p>
                 <hr>

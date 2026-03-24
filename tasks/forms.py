@@ -11,5 +11,12 @@ class TaskForm(forms.ModelForm):
         }
 
     def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user', None)  # получаем текущего пользователя
         super().__init__(*args, **kwargs)
-        self.fields['assigned_to'].queryset = User.objects.filter(profile__role='dev')
+        if user and user.profile.role != 'admin' and user.profile.organization:
+            self.fields['assigned_to'].queryset = User.objects.filter(
+                profile__role='dev',
+                profile__organization=user.profile.organization
+            )
+        else:
+            self.fields['assigned_to'].queryset = User.objects.filter(profile__role='dev')

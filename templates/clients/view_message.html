@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Обращение: {{ message.subject }}{% endblock %}
+{% block content %}
+<h2>Обращение: {{ message.subject }}</h2>
+<p><strong>Дата:</strong> {{ message.created_at|date:"d.m.Y H:i" }}</p>
+<p><strong>Ваше сообщение:</strong> {{ message.message }}</p>
+
+<hr>
+<h4>История переписки</h4>
+<div class="mb-4" style="max-height: 400px; overflow-y: auto;">
+    {% for reply in replies %}
+        <div class="mb-2 {% if reply.author == request.user %}text-end{% else %}text-start{% endif %}">
+            <div class="d-inline-block p-2 rounded {% if reply.author == request.user %}bg-primary text-white{% else %}bg-light{% endif %}">
+                <strong>{{ reply.author.get_full_name|default:reply.author.username }}</strong>:
+                {{ reply.text }}
+                <br><small class="text-muted">{{ reply.created_at|date:"d.m.Y H:i" }}</small>
+            </div>
+        </div>
+    {% empty %}
+        <p class="text-muted">Нет ответов.</p>
+    {% endfor %}
+</div>
+
+<hr>
+<h4>Написать сообщение</h4>
+<form method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button type="submit" class="btn btn-primary">Отправить</button>
+    <a href="{% url 'client_dashboard' %}" class="btn btn-secondary">Назад</a>
+</form>
+
+{% if message.project %}
+    <div class="mt-3">
+        <a href="{% url 'project_dialog' message.project.id %}" class="btn btn-info">Перейти в проект</a>
+    </div>
+{% endif %}
+{% endblock %}

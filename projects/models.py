@@ -10,6 +10,13 @@ class Project(models.Model):
     created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='created_projects')
     curator = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='curated_projects')
     created_at = models.DateTimeField(auto_now_add=True)
+    organization = models.ForeignKey(
+        'accounts.Organization',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='projects'
+    )
 
     def save(self, *args, **kwargs):
         if not self.id:

@@ -23,6 +23,7 @@ class Task(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='created_tasks')
     tester_comment = models.TextField(blank=True)
+    repository_url = models.URLField(max_length=500, blank=True, verbose_name='Ссылка на репозиторий')
 
     def __str__(self):
         return f"{self.title} ({self.get_status_display()})"
