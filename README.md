@@ -6,9 +6,5 @@ python manage.py runserver
 
 Тестовые учетные записи
 admin:admin
-S.trafimov:101006ыукпщЕ
-sergo:101006sergoT
-Kurisu:101006ser
-Kris:123456789Kurisu
-Krisy:101006Крис
-olega:123456789Oleg
+
+для доступа в админ панель добавьте к базовой ссылке /admin-panel
