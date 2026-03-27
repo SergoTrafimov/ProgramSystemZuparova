@@ -12,6 +12,11 @@
         <label>Описание</label>
         <textarea name="description" rows="3" class="form-control">{{ org.description|default:'' }}</textarea>
     </div>
+    <div class="mb-3">
+    <label>Код приглашения</label>
+    <input type="text" name="invite_code" value="{{ org.invite_code|default:'' }}" class="form-control">
+    <small class="form-text text-muted">Будет использоваться для регистрации новых пользователей (кроме клиентов).</small>
+</div>
     <button type="submit" class="btn btn-primary">Сохранить</button>
     <a href="{% url 'admin_organization_list' %}" class="btn btn-secondary">Отмена</a>
 </form>

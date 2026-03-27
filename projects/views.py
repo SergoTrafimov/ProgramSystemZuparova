@@ -174,7 +174,8 @@ def project_dialog(request, project_id):
     project = get_object_or_404(Project, id=project_id)
     # Проверка доступа
     if request.user.profile.role == 'client':
-        if request.user != project.created_by:
+        # Клиент может видеть проект, если он его создатель ИЛИ проект связан с его обращением
+        if request.user != project.created_by and not project.client_messages.filter(created_by=request.user).exists():
             messages.error(request, 'Доступ запрещён')
             return redirect('index')
     elif request.user.profile.role == 'analyst':

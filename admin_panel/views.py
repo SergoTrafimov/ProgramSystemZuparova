@@ -24,13 +24,16 @@ def organization_create(request):
     if request.method == 'POST':
         name = request.POST.get('name')
         description = request.POST.get('description')
+        invite_code = request.POST.get('invite_code')
         if name:
-            Organization.objects.create(name=name, description=description)
+            Organization.objects.create(name=name, description=description, invite_code=invite_code)
             messages.success(request, 'Организация создана.')
             return redirect('admin_organization_list')
         else:
             messages.error(request, 'Название обязательно.')
     return render(request, 'admin_panel/organization_form.html', {'title': 'Создать организацию'})
+
+
 
 @login_required
 @user_passes_test(is_admin)
@@ -39,6 +42,7 @@ def organization_edit(request, pk):
     if request.method == 'POST':
         org.name = request.POST.get('name')
         org.description = request.POST.get('description')
+        org.invite_code = request.POST.get('invite_code')
         org.save()
         messages.success(request, 'Организация обновлена.')
         return redirect('admin_organization_list')
