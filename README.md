@@ -8,3 +8,6 @@ python manage.py runserver
 admin:admin
 
 для доступа в админ панель добавьте к базовой ссылке /admin-panel
+
+Также проект доступен по ссылке 
+https://sbbot.eu.pythonanywhere.com
