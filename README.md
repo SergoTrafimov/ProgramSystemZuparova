@@ -1,4 +1,4 @@
-🐍 Kostyl' (Project Management System)
+🐍 KostylЯ (Project Management System)
 
 [![CI](https://github.com/SergoTrafimov/ProgramSystemZuparova/actions/workflows/ci.yml/badge.svg)](https://github.com/SergoTrafimov/ProgramSystemZuparova/actions/workflows/ci.yml)
 
@@ -37,8 +37,8 @@
       
       source venv/bin/activate
   
-2. Установка зависимостей
- pip install -r requirements.txt
+2.Установка зависимостей
+   pip install -r requirements.txt
 
 
 4. Применение миграций и создание суперпользователя
@@ -98,16 +98,6 @@ GitHub Actions (CI/CD)
 
 Codecov (покрытие)
 
-🤝 Участие в разработке
-Форкните репозиторий
-
-Создайте ветку для новой функциональности (git checkout -b feature/amazing-feature)
-
-Внесите изменения и напишите тесты
-
-Убедитесь, что все тесты проходят: pytest -v
-
-Запушьте ветку и откройте pull request
 
 📄 Лицензия
 Этот проект создан в учебных целях и не предназначен для коммерческого использования.
