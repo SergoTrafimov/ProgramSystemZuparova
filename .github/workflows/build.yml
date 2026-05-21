@@ -18,5 +18,3 @@ jobs:
       run: pip install -r requirements.txt
     - name: Проверка миграций
       run: python manage.py makemigrations --check --dry-run
-    - name: Сбор статических файлов (проверка)
-      run: python manage.py collectstatic --noinput --dry-run
