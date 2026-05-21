@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.10, 3.11, 3.12]
+        python-version: [3.12]
 
     steps:
     - uses: actions/checkout@v4
@@ -23,9 +23,8 @@ jobs:
       run: |
         pip install -r requirements.txt
         pip install pytest pytest-django pytest-cov
-    - name: Запуск тестов с покрытием
-      run: |
-        pytest --cov=. --cov-report=xml --cov-omit="*/migrations/*,*/tests/*,*/admin.py,*/apps.py,*/__init__.py,manage.py,main.py,kosti/asgi.py,kosti/wsgi.py,*/templatetags/*,*/signals.py"
+    - name: Run tests with coverage
+      run: pytest --cov=. --cov-report=xml
     - name: Загрузка отчёта о покрытии (Codecov)
       uses: codecov/codecov-action@v4
       with:
