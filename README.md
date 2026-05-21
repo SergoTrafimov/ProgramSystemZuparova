@@ -28,9 +28,12 @@
 1. Настройка виртуального окружения
 
   python -m venv venv
+  
   venv\Scripts\activate
 
+
   python3 -m venv venv
+  
   source venv/bin/activate
   
 2. Установка зависимостей
