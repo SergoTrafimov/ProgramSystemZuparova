@@ -4,8 +4,6 @@
 
 [![Build](https://github.com/SergoTrafimov/ProgramSystemZuparova/actions/workflows/build.yml/badge.svg)](https://github.com/SergoTrafimov/ProgramSystemZuparova/actions/workflows/build.yml)
 
-[![Deploy](https://github.com/SergoTrafimov/ProgramSystemZuparova/actions/workflows/deploy.yml/badge.svg)](https://github.com/SergoTrafimov/ProgramSystemZuparova/actions/workflows/deploy.yml)
-
 
 Система управления проектами и задачами для IT-компании с ролевой моделью (аналитик, куратор, разработчик, тестировщик, бухгалтер, клиент).
 
