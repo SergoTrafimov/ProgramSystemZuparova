@@ -26,12 +26,13 @@
 
 🚀 Быстрый старт
 1. Настройка виртуального окружения
-text
-python -m venv venv
-venv\Scripts\activate
-text
-python3 -m venv venv
-source venv/bin/activate
+
+  python -m venv venv
+  venv\Scripts\activate
+
+  python3 -m venv venv
+  source venv/bin/activate
+  
 2. Установка зависимостей
 text
 pip install -r requirements.txt
