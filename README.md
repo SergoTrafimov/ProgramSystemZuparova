@@ -27,37 +27,41 @@
 🚀 Быстрый старт
 1. Настройка виртуального окружения
 
-  python -m venv venv
-  
-  venv\Scripts\activate
-
-
-  python3 -m venv venv
-  
-  source venv/bin/activate
+ WINDOWS
+    
+      python -m venv venv
+      
+      venv\Scripts\activate
+    
+ LINUX
+    
+      python3 -m venv venv
+      
+      source venv/bin/activate
   
 2. Установка зависимостей
-text
-pip install -r requirements.txt
-Если файла requirements.txt нет, создайте его командой:
+ pip install -r requirements.txt
 
-text
-pip freeze > requirements.txt
-3. Применение миграций и создание суперпользователя
-text
+
+4. Применение миграций и создание суперпользователя
+
 python manage.py migrate
+
 python manage.py createsuperuser
+
 4. Запуск сервера
-text
+
 python manage.py runserver 8080
+
 Приложение будет доступно по адресу: http://localhost:8080
 
 5. Вход в систему
-Пользовательский интерфейс: http://localhost:8080
+   
+  Пользовательский интерфейс: http://localhost:8080
 
-Админ-панель Django: http://localhost:8080/admin
+  Админ-панель Django: http://localhost:8080/admin
 
-Кастомная админ-панель: http://localhost:8080/admin-panel
+  Кастомная админ-панель: http://localhost:8080/admin-panel
 
 🧪 Тестирование и автоматизация
 Тесты написаны с использованием pytest и pytest-django. GitHub Actions настроен на автоматический запуск тестов при каждом пуше в main и создании pull request.
