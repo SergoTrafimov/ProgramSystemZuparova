@@ -1,9 +1,8 @@
 🐍 Kostyl' (Project Management System)
-https://github.com/SergoTrafimov/ProgramSystemZuparova/actions/workflows/ci.yml/badge.svg
-https://github.com/SergoTrafimov/ProgramSystemZuparova/actions/workflows/build.yml/badge.svg
-https://github.com/SergoTrafimov/ProgramSystemZuparova/actions/workflows/deploy.yml/badge.svg
-https://codecov.io/gh/SergoTrafimov/ProgramSystemZuparova/branch/main/graph/badge.svg
-
+[![CI](https://github.com/SergoTrafimov/ProgramSystemZuparova/actions/workflows/ci.yml/badge.svg)](https://github.com/SergoTrafimov/ProgramSystemZuparova/actions/workflows/ci.yml)
+[![Build](https://github.com/SergoTrafimov/ProgramSystemZuparova/actions/workflows/build.yml/badge.svg)](https://github.com/SergoTrafimov/ProgramSystemZuparova/actions/workflows/build.yml)
+[![Deploy](https://github.com/SergoTrafimov/ProgramSystemZuparova/actions/workflows/deploy.yml/badge.svg)](https://github.com/SergoTrafimov/ProgramSystemZuparova/actions/workflows/deploy.yml)
+[![Coverage](https://codecov.io/gh/SergoTrafimov/ProgramSystemZuparova/branch/main/graph/badge.svg)](https://codecov.io/gh/SergoTrafimov/ProgramSystemZuparova)
 Система управления проектами и задачами для IT-компании с ролевой моделью (аналитик, куратор, разработчик, тестировщик, бухгалтер, клиент).
 
 📋 Основные возможности
